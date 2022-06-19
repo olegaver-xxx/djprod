@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from apps.blog.views import IndexView, ArtView
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', IndexView.as_view()),
+    path('detail/<int:pk>', ArtView.as_view(), name = "detail"),
 ]
