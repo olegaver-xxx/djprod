@@ -5,10 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-{% for article in object_list %}
-    <p> <a href="{% url "detail" article.id %}"> {{ article.title }} </a> </p>
-
+Current user: {{ request.user }}
+<br>
+{% if not user.is_authenticated %}
+    <a href="{% url 'login' %}">LOGIN</a>
+{% else %}
+    <a href="{% url 'logout' %}">LOGOUT</a>
+{% endif %}
+<br>
+{% for article in articles %}
+    <p><a href="{% url 'details' article.id %}"> {{ article }}</a></p>
 {% endfor %}
-
 </body>
 </html>

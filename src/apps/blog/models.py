@@ -5,3 +5,4 @@ class Article(models.Model):
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='articles/', blank=True)
+    published = models.BooleanField(default=True, blank=True)
