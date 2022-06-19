@@ -1,20 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Current user: {{ request.user }}
-<br>
-{% if not user.is_authenticated %}
-    <a href="{% url 'login' %}">LOGIN</a>
-{% else %}
-    <a href="{% url 'logout' %}">LOGOUT</a>
-{% endif %}
-<br>
-{% for article in articles %}
-    <p><a href="{% url 'details' article.id %}"> {{ article }}</a></p>
-{% endfor %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+                <div class="col-lg-8">
+                    <div class="post-wrapper">
+                        {% for article in articles %}
+                            <article class="post">
+                                <div class="feature-image"><a href="{% url 'detail' article.id %}"><img src="{{ article.image }}"
+                                                                                           alt=""></a></div>
+                                <div class="blog-content">
+                                    <ul class="post-meta">
+                                        <li><a href="#">{{ article.date }}</a></li>
+                                    </ul>
+                                    <h3 class="entry-title"><a href="#">{{ article.title }}</a></h3>
+                                    <p>{{ article.text|truncatewords:10 }}</p>
+                                    <a href="{% url 'detail' article.id %}" class="read-more">Read More <i
+                                        class="ei ei-arrow_right"></i></a>
+{#                                    <div class="author"><img src="{{ article.image.url }}" alt="author">#}
+{#                                        <a href="#" class="author-link">{{ article.author }}</a></div>#}
+                                </div>
+                            </article>
+
+                        {% endfor %}
+
+
+{#                        <ul class="post-navigation">#}
+{#                            <li class="active">1</li>#}
+{#                            <li><a href="#">2</a></li>#}
+{#                            <li class="next"><a href="#"><i class="ei ei-arrow_carrot-right"></i></a></li>#}
+{#                        </ul>#}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+{#                    {% include 'blog/sidebar.html' %}#}
+                </div>
+            </div>
+
+{##}
+{#{% if not user.is_authenticated %}#}
+{#    <a href="{% url 'login' %}">LOGIN</a>#}
+{#{% else %}#}
+{#    <a href="{% url 'logout' %}">LOGOUT</a>#}
+{#{% endif %}#}
+{#<br>#}
+{#{% for article in articles %}#}
+{#    <p><a href="{% url 'detail' article.id %}"> {{ article }}</a></p>#}
+{#{% endfor %}#}
+{% endblock %}

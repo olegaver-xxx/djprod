@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+
+{% block content %}
+
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
@@ -20,7 +18,8 @@
         {% endfor %}
       </p>
     {% endfor %}
-    <button type="submit">Sign up</button>
+{#    <button type="submit">Sign up</button>#}
+    <button class="nav-right"><a href="{% url 'signup' %}" class="nav-btn">Sign Up</a></button>
   </form>
-</body>
-</html>
+
+{% endblock %}

@@ -10,11 +10,13 @@ from .forms import ArticleForm, ArticleEditForm
 class IndexView(ListView):
     template_name = 'blog/article_list.html'
     model = Article
+    context_object_name = 'articles'
 # def ViewHTML(request):
 #     return render(request, 'article_list.html')
 
 class ArtView(DetailView):
     model = Article
+    context_object_name = 'articles'
 
 class ArticleCreateView(CreateView):
     form_class = ArticleForm
