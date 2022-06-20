@@ -54,7 +54,7 @@
             <div class="header-inner">
                 <div class="site-mobile-logo"><a href="index.html" class="logo"><img src="{% static "assets/img/sticky-logo.png" %}"
                                                                                      alt="site logo" class="main-logo">
-                    <img src="{% static "assets/img/sticky-logo.png" %}" alt="site logo" class="sticky-logo"></a></div>
+                    <img src="{% static "assets/img/~sticky-logo.png" %}" alt="site logo" class="sticky-logo"></a></div>
                 <div class="toggle-menu"><span class="bar"></span> <span class="bar"></span> <span class="bar"></span>
                 </div>
                 <nav class="site-nav nav-dark">
@@ -65,10 +65,11 @@
                     <div class="menu-wrapper" data-top="992">
                         <ul class="site-main-menu">
                             <li><a href="{% url 'home' %}">Blog</a></li>
-                            <li><a href="#">Contact</a></li>
+{#                            <li><a href="#">Contact</a></li>#}
                         </ul>
                         {% if user.is_authenticated %}
                             <div class="nav-right"><a href="{% url 'logout' %}" class="nav-btn">Logout</a></div>
+                            <div class="nav-right"><a href="{% url 'create' %}" class="nav-btn">Create</a></div>
                         {% else %}
                             <div class="nav-right"><a href="{% url 'login' %}" class="nav-btn">Login</a></div>
                         {% endif %}

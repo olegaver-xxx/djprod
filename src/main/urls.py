@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from apps.blog.views import IndexView, ArtView, ArticleCreateView, ArticleUpdateView
@@ -30,3 +32,4 @@ urlpatterns = [
     path('edit/<int:pk>', ArticleUpdateView.as_view(), name="edit"),
     path('detail/<int:pk>', ArtView.as_view(), name = "detail"),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

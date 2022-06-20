@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+
 <h2>{{ object.title }}</h2>
+    <img src="{{ object.image.url }}" alt="image">
 <br>
-<h1> {{ object.text }} </h1>
-</body>
-</html>
+<p> {{ object.text }} </p>
+    <br>
+
+
+
+{% endblock %}

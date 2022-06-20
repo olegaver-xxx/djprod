@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 {% block content %}
 
-<div class="row">
-                <div class="col-lg-8">
+<div class="row  justify-content-md-center">
+                <div class="col-md-8">
                     <div class="post-wrapper">
                         {% for article in articles %}
                             <article class="post">
@@ -11,14 +11,23 @@
                                                                                            alt=""></a></div>
                                 <div class="blog-content">
                                     <ul class="post-meta">
-                                        <li><a href="#">{{ article.date }}</a></li>
+                                        <li>{{ article.date }}</li>
                                     </ul>
-                                    <h3 class="entry-title"><a href="#">{{ article.title }}</a></h3>
+                                {% if article.image %}
+                                    <img src="{{ article.image.url }}" alt="image" class="responsive">
+                                {% endif %}
+                                    <h3 class="entry-title"><a href="{% url 'detail' article.id %}">{{ article.title }}</a></h3>
                                     <p>{{ article.text|truncatewords:10 }}</p>
                                     <a href="{% url 'detail' article.id %}" class="read-more">Read More <i
                                         class="ei ei-arrow_right"></i></a>
+                                    {% if user.is_staff or user == article.author %}
 {#                                    <div class="author"><img src="{{ article.image.url }}" alt="author">#}
 {#                                        <a href="#" class="author-link">{{ article.author }}</a></div>#}
+{#                                        {% elif user.id == author.id or user.is_superuser %}#}
+                                        <a href="{% url 'edit' article.id %}" class="read-more float-right">Edit Article <i
+                                            class="ei ei-pencil"></i></a>
+
+                                    {% endif %}
                                 </div>
                             </article>
 
