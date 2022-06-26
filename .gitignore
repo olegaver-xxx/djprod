@@ -5,3 +5,4 @@ __pycache__/
 *$py.class
 media/
 src/db.sqlite3
+static/

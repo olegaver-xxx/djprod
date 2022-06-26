@@ -1,0 +1,38 @@
+upstream django {
+    server 127.0.0.1:8080;
+}
+
+server {
+    # variables
+    set $project_root /home/melkor/PycharmProjects/pythonProject;
+    # server config
+    listen 80;
+    listen [::]:80;
+    server_name localhost 0.0.0.0;
+    root $project_root/;
+    client_max_body_size 1000M;
+    client_body_buffer_size 1000m;
+
+    # media
+    location /media/ {
+        alias $project_root/media/;
+    }
+    # static
+    location /static/ {
+        alias $project_root/static/;
+        expires 30d;
+    }
+    # main routing
+    location / {
+        error_page 403 = @django;
+        try_files $uri $uri/ @django;
+    }
+    # app routing
+    location @django {
+        proxy_pass http://django;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}

@@ -32,4 +32,6 @@ urlpatterns = [
     path('edit/<int:pk>', ArticleUpdateView.as_view(), name="edit"),
     path('detail/<int:pk>', ArtView.as_view(), name = "detail"),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
