@@ -2,6 +2,7 @@ version: "3.4"
 services:
   app:
     image: demo
+    restart: always
     build:
       context: .
     ports:
@@ -9,4 +10,5 @@ services:
     volumes:
       - ./media:/app/media
       - ./static:/app/static
+#      - ./src:/app/src
     container_name: blog
